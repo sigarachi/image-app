@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editButton: Button
 
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
-
-    private val PICK_IMAGE_REQUEST = 1
     private var currentImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,19 +81,6 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, "Не удалось открыть галерею", Toast.LENGTH_SHORT).show()
             e.printStackTrace()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            val uri = data?.data
-            if (uri != null) {
-                loadImage(uri)
-            } else {
-                Toast.makeText(this, "Не удалось получить изображение", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 
